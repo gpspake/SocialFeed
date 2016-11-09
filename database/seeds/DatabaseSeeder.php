@@ -12,5 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        $this->call(FeedTableSeeder::class);
+    }
+}
+
+class FeedTableSeeder extends Seeder
+{
+    public function run()
+    {
+        App\Feed::truncate();
+
+        factory(App\Feed::class, 20)->create();
     }
 }

@@ -22,3 +22,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Feed::class, function (Faker\Generator $faker) {
+    return [
+        'service' => $faker->randomElement(['twitter', 'facebook', 'instagram']),
+        'post_id' => $faker->randomNumber($nbDigits = 9),
+        'image_url' => $faker->imageUrl($width = 640, $height = 480),
+        'content'  => $faker->sentence(mt_rand(5,20)),
+        'post_url' => $faker->url(),
+        'published_at' => $faker->dateTimeBetween('-1 month', '+3 days'),
+    ];
+});
+
+
+
+
