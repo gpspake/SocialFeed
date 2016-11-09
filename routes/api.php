@@ -18,7 +18,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::group(['prefix' => 'feed'], function () {
-    Route::get('/', function () {
-        return App\Feed::all();
-    });
+    Route::get('/', 'FeedController@show')->name('feed');
 });
