@@ -82,6 +82,11 @@ class GetTweets extends Command
         DB::table('feeds')->insert( $parsed_tweet );
     }
 
+    function deleteExistingTweets()
+    {
+        DB::table('feeds')->where('service', 'twitter')->delete();
+    }
+
     function saveTweets()
     {
         $this->deleteExistingTweets();
@@ -89,11 +94,6 @@ class GetTweets extends Command
         $tweets = $this->getTweets( env('twitter_user', '') );
 
         array_map( array($this, 'parseTweet' ), $tweets );
-    }
-
-    function deleteExistingTweets()
-    {
-        DB::table('feeds')->where('service', 'twitter')->delete();
     }
 
     /**
