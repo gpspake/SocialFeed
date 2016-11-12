@@ -46,7 +46,13 @@ class GetTweets extends Command
     function getTweets($user)
     {
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-        $getField = '?screen_name=' . $user;
+
+        $screenName = 'screen_name=' . $user;
+        $excludeReplies = 'exclude_replies=true';
+        $count = 'count=100';
+        $includeRetweets = 'include_rts=false';
+
+        $getField = '?' . $screenName . '&' . $excludeReplies . '&' . $count . '&' . $includeRetweets;
         $twitter = new TwitterAPIExchange($this->getTwitterSettings());
         $response = $twitter->setGetfield($getField)
             ->buildOauth($url, 'GET')
