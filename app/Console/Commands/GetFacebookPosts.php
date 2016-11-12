@@ -57,14 +57,14 @@ class GetFacebookPosts extends Command
     function parseFacebookPost($fb_post)
     {
         $created_at = date('Y-m-d H:i:s', strtotime($fb_post['created_time']));
-        $message = array_key_exists('message', $fb_post) ? $fb_post['message'] : '';
+        $content = array_key_exists('message', $fb_post) ? substr( $fb_post['message'] , 0 , 999 ) : '';
         $image = array_key_exists('image_url', $fb_post) ? $fb_post['image_url'] : '';
 
         $parsed_fb_post = [];
         $parsed_fb_post['service'] = 'facebook';
         $parsed_fb_post['post_id'] = $fb_post['id'];
         $parsed_fb_post['image_url'] = $image;
-        $parsed_fb_post['content'] = $message;
+        $parsed_fb_post['content'] = $content;
         $parsed_fb_post['post_url'] = $fb_post['permalink_url'];
         $parsed_fb_post['published_at'] = $created_at;
 
