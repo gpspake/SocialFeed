@@ -91,7 +91,7 @@ class GetTweets extends Command
     {
         $this->deleteExistingTweets();
 
-        $tweets = $this->getTweets( env('twitter_user', '') );
+        $tweets = $this->getTweets( env('twitter_user') );
 
         array_map( array($this, 'parseTweet' ), $tweets );
     }
