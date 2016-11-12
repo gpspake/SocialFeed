@@ -63,7 +63,7 @@ class GetTweets extends Command
     {
         $media = array_key_exists ( 'media', $tweet['entities'] ) ? $tweet['entities']['media'][0]['media_url'] : '';
         $created_at = date('Y-m-d H:i:s', strtotime($tweet['created_at']));
-        $content = substr ( $this->remove_emoji($tweet['text']) , 0 , 999 );
+        $content = substr( $this->remove_emoji($tweet['text']) , 0 , 999 );
 
         $parsed_tweet = [];
         $parsed_tweet['service'] = 'twitter';
