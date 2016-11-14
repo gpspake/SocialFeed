@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\GetTweets::class,
-        Commands\GetFacebookPosts::class
+        Commands\GetFacebookPosts::class,
+        Commands\GetInstagramPosts::class
     ];
 
     /**
