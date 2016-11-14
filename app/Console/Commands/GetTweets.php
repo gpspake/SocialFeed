@@ -32,6 +32,11 @@ class GetTweets extends Command
         parent::__construct();
     }
 
+    /**
+     * Get twitter oath settings
+     *
+     * @return array
+     */
     function getTwitterSettings()
     {
         $settings = array(
@@ -43,6 +48,13 @@ class GetTweets extends Command
         return $settings;
     }
 
+    /**
+     * Get tweets as array
+     *
+     * @param $user
+     * @return mixed
+     * @throws \Exception
+     */
     function getTweets($user)
     {
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
@@ -60,11 +72,22 @@ class GetTweets extends Command
         return json_decode($response, true);
     }
 
+    /**
+     * Remove emojis from a string
+     *
+     * @param $text
+     * @return mixed
+     */
     function remove_emoji($text){
         $regex = '/([0-9#][\x{20E3}])|[\x{00ae}\x{00a9}\x{203C}\x{2047}\x{2048}\x{2049}\x{3030}\x{303D}\x{2139}\x{2122}\x{3297}\x{3299}][\x{FE00}-\x{FEFF}]?|[\x{2190}-\x{21FF}][\x{FE00}-\x{FEFF}]?|[\x{2300}-\x{23FF}][\x{FE00}-\x{FEFF}]?|[\x{2460}-\x{24FF}][\x{FE00}-\x{FEFF}]?|[\x{25A0}-\x{25FF}][\x{FE00}-\x{FEFF}]?|[\x{2600}-\x{27BF}][\x{FE00}-\x{FEFF}]?|[\x{2900}-\x{297F}][\x{FE00}-\x{FEFF}]?|[\x{2B00}-\x{2BF0}][\x{FE00}-\x{FEFF}]?|[\x{1F000}-\x{1F6FF}][\x{FE00}-\x{FEFF}]?/u';
         return preg_replace($regex, '', $text);
     }
 
+    /**
+     * Format a single tweet
+     *
+     * @param $tweet
+     */
     function parseTweet($tweet)
     {
         $media = array_key_exists ( 'media', $tweet['entities'] ) ? $tweet['entities']['media'][0]['media_url'] : '';
@@ -82,6 +105,9 @@ class GetTweets extends Command
         DB::table('feeds')->insert( $parsed_tweet );
     }
 
+    /**
+     * Remove all existing tweets in the database
+     */
     function deleteExistingTweets()
     {
         DB::table('feeds')->where('service', 'twitter')->delete();

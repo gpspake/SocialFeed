@@ -83,6 +83,9 @@ class GetFacebookPosts extends Command
 
     }
 
+    /**
+     * Delete existing facebook posts from database
+     */
     function deleteExistingFacebookPosts()
     {
         DB::table('feeds')->where('service', 'facebook')->delete();
