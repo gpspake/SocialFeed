@@ -19,7 +19,7 @@ class GetFacebookPosts extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Get Facebook posts';
 
     /**
      * Create a new command instance.
