@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class GetTweets extends Command
 {
+
+    use SocialMedia;
+
     /**
      * The name and signature of the console command.
      *
@@ -23,9 +26,15 @@ class GetTweets extends Command
     protected $description = 'Get my tweets';
 
     /**
+     * The service name
+     *
+     * @var string
+     */
+    protected $service_name = 'twitter';
+
+    /**
      * Create a new command instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -51,15 +60,14 @@ class GetTweets extends Command
     /**
      * Get tweets as array
      *
-     * @param $user
      * @return mixed
      * @throws \Exception
      */
-    function getTweets($user)
+    function getPosts()
     {
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 
-        $screenName = 'screen_name=' . $user;
+        $screenName = 'screen_name=' . env('twitter_user');
         $excludeReplies = 'exclude_replies=true';
         $count = 'count=100';
         $includeRetweets = 'include_rts=false';
@@ -88,7 +96,7 @@ class GetTweets extends Command
      *
      * @param $tweet
      */
-    function parseTweet($tweet)
+    function parsePost($tweet)
     {
         $media = array_key_exists ( 'media', $tweet['entities'] ) ? $tweet['entities']['media'][0]['media_url'] : '';
         $created_at = date('Y-m-d H:i:s', strtotime($tweet['created_at']));
@@ -106,29 +114,12 @@ class GetTweets extends Command
     }
 
     /**
-     * Remove all existing tweets in the database
-     */
-    function deleteExistingTweets()
-    {
-        DB::table('feeds')->where('service', 'twitter')->delete();
-    }
-
-    function saveTweets()
-    {
-        $this->deleteExistingTweets();
-
-        $tweets = $this->getTweets( env('twitter_user') );
-
-        array_map( array($this, 'parseTweet' ), $tweets );
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $this->saveTweets();
+        $this->savePosts();
     }
 }
