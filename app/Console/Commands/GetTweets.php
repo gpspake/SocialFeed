@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use TwitterAPIExchange;
-use Illuminate\Support\Facades\DB;
 
 class GetTweets extends Command
 {
