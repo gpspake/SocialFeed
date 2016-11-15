@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class GetInstagramPosts extends Command
 {
+
+    use SocialMedia;
+
     /**
      * The name and signature of the console command.
      *
@@ -22,6 +25,13 @@ class GetInstagramPosts extends Command
     protected $description = 'Get Instagram Posts';
 
     /**
+     * The service name
+     *
+     * @var string
+     */
+    protected $service_name = 'instagram';
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -34,13 +44,12 @@ class GetInstagramPosts extends Command
     /**
      * Get Instagram posts as array
      *
-     * @param $user
      * @return mixed
      */
-    function getInstagramPosts($user)
+    function getPosts()
     {
-        $url = 'https://api.instagram.com/v1/users/' . $user . '/media/recent';
-        $token = 'access_token=' . $user . '.' . env('instagram_access_token');
+        $url = 'https://api.instagram.com/v1/users/' . env('instagram_user_id') . '/media/recent';
+        $token = 'access_token=' . env('instagram_user_id') . '.' . env('instagram_access_token');
         $count = 'count=20';
 
         $query_string = '?' . $token . '&' . $count;
@@ -55,7 +64,7 @@ class GetInstagramPosts extends Command
      *
      * @param $ig_post
      */
-    function parseInstagramPost($ig_post){
+    function parsePost($ig_post){
         $created_at = date('Y-m-d H:i:s', $ig_post['created_time']);
         $content = array_key_exists('caption', $ig_post) ? substr( $ig_post['caption']['text'] , 0 , 999 ) : '';
 
@@ -72,28 +81,11 @@ class GetInstagramPosts extends Command
     }
 
     /**
-     * Delete existing facebook posts from database
-     */
-    function deleteExistingInstagramPosts()
-    {
-        DB::table('feeds')->where('service', 'instagram')->delete();
-    }
-
-    /**
      * @param $post
      */
     function storeInstagramPost($post)
     {
         DB::table('feeds')->insert( $post );
-    }
-
-    function updateInstagramPosts()
-    {
-        $this->deleteExistingInstagramPosts();
-
-        $posts = $this->getInstagramPosts( env('instagram_user_id') );
-
-        array_map( array($this, 'parseInstagramPost' ), $posts );
     }
 
     /**
@@ -103,6 +95,6 @@ class GetInstagramPosts extends Command
      */
     public function handle()
     {
-        $this->updateInstagramPosts();
+        $this->savePosts();
     }
 }
