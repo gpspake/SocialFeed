@@ -33,8 +33,6 @@ trait SocialMedia {
     {
         $this->deleteExistingPosts();
 
-        echo $this->option('delete');
-
         if ( !$this->option('delete') ) {
 
             $posts = $this->getPosts();
