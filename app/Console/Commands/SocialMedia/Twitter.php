@@ -89,6 +89,10 @@ trait Twitter
 
     function valid($posts)
     {
-        return is_array($posts);
+        if( !is_array($posts) || array_key_exists('errors', $posts) ) {
+            return false;
+        }
+
+        return true;
     }
 }
