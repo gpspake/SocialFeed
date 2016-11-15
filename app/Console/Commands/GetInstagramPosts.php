@@ -15,7 +15,7 @@ class GetInstagramPosts extends Command
      *
      * @var string
      */
-    protected $signature = 'command:getInstagramPosts';
+    protected $signature = 'command:getInstagramPosts {--delete}';
 
     /**
      * The console command description.

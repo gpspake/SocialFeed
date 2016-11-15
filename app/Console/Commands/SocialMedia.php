@@ -33,9 +33,15 @@ trait SocialMedia {
     {
         $this->deleteExistingPosts();
 
-        $posts = $this->getPosts();
-        
-        array_map( array($this, 'parsePost' ), $posts );
+        echo $this->option('delete');
+
+        if ( !$this->option('delete') ) {
+
+            $posts = $this->getPosts();
+
+            array_map( array($this, 'parsePost' ), $posts );
+
+        }
     }
 
 }

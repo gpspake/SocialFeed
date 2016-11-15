@@ -16,7 +16,7 @@ class GetTweets extends Command
      *
      * @var string
      */
-    protected $signature = 'command:getTweets';
+    protected $signature = 'command:getTweets {--delete}';
 
     /**
      * The console command description.

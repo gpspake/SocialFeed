@@ -9,13 +9,13 @@ class GetFacebookPosts extends Command
 {
 
     use SocialMedia;
-    
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:getFacebookPosts';
+    protected $signature = 'command:getFacebookPosts {--delete}';
 
     /**
      * The console command description.
