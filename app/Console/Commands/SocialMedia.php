@@ -17,8 +17,8 @@ trait SocialMedia {
     }
 
     /**
-     * save a single post to the database
-     * 
+     * Save a single post to the database
+     *
      * @param $post
      */
     function savePost($post)
