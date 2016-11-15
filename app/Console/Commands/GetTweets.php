@@ -110,7 +110,7 @@ class GetTweets extends Command
         $parsed_tweet['post_url'] = 'https://twitter.com/statuses/' . $tweet['id_str'];
         $parsed_tweet['published_at'] = $created_at;
 
-        DB::table('feeds')->insert( $parsed_tweet );
+        $this->savePost($parsed_tweet);
     }
 
     /**

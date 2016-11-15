@@ -17,6 +17,16 @@ trait SocialMedia {
     }
 
     /**
+     * save a single post to the database
+     * 
+     * @param $post
+     */
+    function savePost($post)
+    {
+        DB::table('feeds')->insert( $post );
+    }
+
+    /**
      * Save posts
      */
     function savePosts()

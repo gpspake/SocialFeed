@@ -77,15 +77,7 @@ class GetInstagramPosts extends Command
         $parsed_ig_post['post_url'] = $ig_post['link'];
         $parsed_ig_post['published_at'] = $created_at;
 
-        $this->storeInstagramPost($parsed_ig_post);
-    }
-
-    /**
-     * @param $post
-     */
-    function storeInstagramPost($post)
-    {
-        DB::table('feeds')->insert( $post );
+        $this->savePost($parsed_ig_post);
     }
 
     /**
