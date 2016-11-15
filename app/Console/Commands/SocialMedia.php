@@ -28,18 +28,12 @@ trait SocialMedia {
 
     /**
      * Save posts
+     *
+     * @param $posts
      */
-    function savePosts()
+    function savePosts($posts)
     {
-        $this->deleteExistingPosts();
-
-        if ( !$this->option('delete') ) {
-
-            $posts = $this->getPosts();
-
-            array_map( array($this, 'parsePost' ), $posts );
-
-        }
+        array_map(array($this, 'savePost'), $posts);
     }
 
 }
