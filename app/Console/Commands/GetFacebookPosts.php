@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class GetFacebookPosts extends Command
 {
+
+    use SocialMedia;
+    
     /**
      * The name and signature of the console command.
      *
@@ -20,6 +23,13 @@ class GetFacebookPosts extends Command
      * @var string
      */
     protected $description = 'Get Facebook posts';
+
+    /**
+     * The service name
+     *
+     * @var string
+     */
+    protected $service_name = 'facebook';
 
     /**
      * Create a new command instance.
@@ -36,7 +46,7 @@ class GetFacebookPosts extends Command
      *
      * @return mixed
      */
-    public function getFacebookPosts()
+    public function getPosts()
     {
         $url = 'https://graph.facebook.com/uthsc/posts';
         $access_token = 'access_token=' . env('FACEBOOK_APP_ID') . '|' . env('FACEBOOK_APP_SECRET');
@@ -54,7 +64,7 @@ class GetFacebookPosts extends Command
      *
      * @param $fb_post
      */
-    function parseFacebookPost($fb_post)
+    function parsePost($fb_post)
     {
         $created_at = date('Y-m-d H:i:s', strtotime($fb_post['created_time']));
         $content = array_key_exists('message', $fb_post) ? substr( $fb_post['message'] , 0 , 999 ) : '';
@@ -68,36 +78,8 @@ class GetFacebookPosts extends Command
         $parsed_fb_post['post_url'] = $fb_post['permalink_url'];
         $parsed_fb_post['published_at'] = $created_at;
 
-        $this->storeFacebookPost($parsed_fb_post);
+        $this->savePost($parsed_fb_post);
 
-    }
-
-    /**
-     * Store single fb post in database
-     *
-     * @param $post
-     */
-    function storeFacebookPost($post)
-    {
-        DB::table('feeds')->insert( $post );
-
-    }
-
-    /**
-     * Delete existing facebook posts from database
-     */
-    function deleteExistingFacebookPosts()
-    {
-        DB::table('feeds')->where('service', 'facebook')->delete();
-    }
-
-    function updateFacebookPosts()
-    {
-        $this->deleteExistingFacebookPosts();
-
-        $fb_posts = $this->getFacebookPosts();
-
-        array_map( array($this, 'parseFacebookPost' ), $fb_posts );
     }
 
     /**
@@ -107,6 +89,6 @@ class GetFacebookPosts extends Command
      */
     public function handle()
     {
-        $this->updateFacebookPosts();
+        $this->savePosts();
     }
 }
