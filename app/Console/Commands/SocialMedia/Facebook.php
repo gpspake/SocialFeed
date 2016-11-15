@@ -65,16 +65,4 @@ trait Facebook
     {
         return array_map(array($this, 'parsePost'), $posts);
     }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $posts = $this->parsePosts( $this->getPosts() );
-
-        $this->savePosts($posts);
-    }
 }

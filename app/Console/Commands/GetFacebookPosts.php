@@ -22,5 +22,18 @@ class GetFacebookPosts extends Command
      * @var string
      */
     protected $description = 'Get Facebook posts';
+
+    function handle() {
+
+        $this->deleteExistingPosts();
+
+        if ($this->option('delete')) {
+            return null;
+        }
+
+        $posts = $this->parsePosts( $this->getPosts() );
+
+        $this->savePosts($posts);
+    }
     
 }
