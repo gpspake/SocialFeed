@@ -37,9 +37,8 @@ class GetTweets extends Command
      */
     public function handle()
     {
-        $this->deleteExistingPosts();
-
         if ($this->option('delete')) {
+            $this->deleteExistingPosts();
             return null;
         }
 
