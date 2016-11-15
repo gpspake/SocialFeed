@@ -42,8 +42,6 @@ class GetTweets extends Command
             return null;
         }
 
-        $posts = $this->parsePosts( $this->getPosts() );
-
-        $this->savePosts($posts);
+        $this->updatePosts();
     }
 }
