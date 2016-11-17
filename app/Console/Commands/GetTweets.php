@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class GetTweets extends Command
 {
 
-    use SocialMedia\Twitter;
+    use \App\SocialMedia\Twitter;
 
     /**
      * The name and signature of the console command.

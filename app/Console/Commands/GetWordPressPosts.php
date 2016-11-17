@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class GetWordPressPosts extends Command
 {
 
-    use SocialMedia\WordPress;
+    use \App\SocialMedia\WordPress;
 
     /**
      * The name and signature of the console command.

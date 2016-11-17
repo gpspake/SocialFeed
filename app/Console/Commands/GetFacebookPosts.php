@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class GetFacebookPosts extends Command
 {
 
-    use SocialMedia\Facebook;
+    use \App\SocialMedia\Facebook;
 
     /**
      * The name and signature of the console command.

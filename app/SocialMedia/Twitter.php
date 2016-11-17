@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\SocialMedia;
+namespace App\SocialMedia;
 
 use TwitterAPIExchange;
 

@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class GetInstagramPosts extends Command
 {
 
-    use SocialMedia\Instagram;
+    use \App\SocialMedia\Instagram;
 
     /**
      * The name and signature of the console command.
