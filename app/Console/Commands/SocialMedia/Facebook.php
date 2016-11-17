@@ -54,15 +54,4 @@ trait Facebook
 
         return $parsed_fb_post;
     }
-
-    /**
-     * Return an array of formatted posts
-     *
-     * @param $posts
-     * @return array
-     */
-    function parsePosts($posts)
-    {
-        return array_map(array($this, 'parsePost'), $posts);
-    }
 }

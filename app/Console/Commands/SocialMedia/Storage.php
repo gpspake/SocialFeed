@@ -17,6 +17,15 @@ trait Storage {
     }
 
     /**
+     * @param $posts
+     * @return array
+     */
+    function parsePosts($posts)
+    {
+        return array_map(array($this, 'parsePost'), $posts);
+    }
+
+    /**
      * Save a single post to the database
      * 
      * @param $post

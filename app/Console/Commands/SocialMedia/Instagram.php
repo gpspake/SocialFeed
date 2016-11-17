@@ -52,16 +52,4 @@ trait Instagram
 
         return $parsed_ig_post;
     }
-
-
-    /**
-     * Return an array of formatted posts
-     *
-     * @param $posts
-     * @return array
-     */
-    function parsePosts($posts)
-    {
-        return array_map(array($this, 'parsePost'), $posts);
-    }
 }

@@ -60,11 +60,6 @@ trait Twitter
         return preg_replace($regex, '', $text);
     }
 
-    function parsePosts($posts) 
-    {
-        return array_map(array($this, 'parsePost'), $posts);
-    }
-
     /**
      * Format a single tweet
      * @param $tweet
