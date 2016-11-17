@@ -24,11 +24,6 @@ trait WordPress
         return json_decode( file_get_contents($url), true );
     }
 
-    function parsePosts($posts)
-    {
-        return array_map(array($this, 'parsePost'), $posts);
-    }
-
     /**
      * Format a single wordpress post
      * @param $wp_post
