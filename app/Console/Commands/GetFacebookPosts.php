@@ -25,15 +25,12 @@ class GetFacebookPosts extends Command
 
     function handle() {
 
-        $this->deleteExistingPosts();
-
         if ($this->option('delete')) {
+            $this->deleteExistingPosts();
             return null;
         }
 
-        $posts = $this->parsePosts( $this->getPosts() );
-
-        $this->savePosts($posts);
+        $this->updatePosts();
     }
     
 }
