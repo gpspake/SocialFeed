@@ -82,6 +82,10 @@ trait Twitter
         return $parsed_tweet;
     }
 
+    /**
+     * @param $posts
+     * @return bool
+     */
     function valid($posts)
     {
         if( !is_array($posts) || array_key_exists('errors', $posts) ) {

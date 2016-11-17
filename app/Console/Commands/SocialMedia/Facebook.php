@@ -54,4 +54,17 @@ trait Facebook
 
         return $parsed_fb_post;
     }
+
+    /**
+     * @param $posts
+     * @return bool
+     */
+    function valid($posts)
+    {
+        if( !is_array($posts)  ) {
+            return false;
+        }
+
+        return true;
+    }
 }

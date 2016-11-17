@@ -46,6 +46,10 @@ trait WordPress
         return $parsed_tweet;
     }
 
+    /**
+     * @param $posts
+     * @return bool
+     */
     function valid($posts)
     {
         if( !is_array($posts)  ) {

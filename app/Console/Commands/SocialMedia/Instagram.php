@@ -52,4 +52,17 @@ trait Instagram
 
         return $parsed_ig_post;
     }
+    
+    /**
+     * @param $posts
+     * @return bool
+     */
+    function valid($posts)
+    {
+        if( !is_array($posts)  ) {
+            return false;
+        }
+
+        return true;
+    }
 }
