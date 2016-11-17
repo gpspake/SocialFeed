@@ -50,10 +50,9 @@ trait Storage {
         $subject = 'something\'s wrong with ' . $this->service_name;
         $message = 'error:' . "\n" . json_encode($error);
 
-        //email error message
-        //mail('gspake1@uthsc.edu', $subject, $message);
-        
-        //log error message
+        //todo: email error message
+        //todo: log error message
+
         echo $error;
     }
 
