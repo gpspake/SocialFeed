@@ -21,8 +21,7 @@ class GetTweets extends Command
      *
      * @var string
      */
-    protected $description = 'Get my tweets';
-
+    protected $description = 'Get tweets';
 
     /**
      * Execute the console command.

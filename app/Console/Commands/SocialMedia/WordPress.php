@@ -8,12 +8,14 @@ trait WordPress
     use Storage;
 
     /**
-     * Get tweets as array
      * The service name
      *
      * @var string
      */
     protected $service_name = 'wordpress';
+
+    /**
+     * Get wordpress posts as array
      *
      * @return mixed
      * @throws \Exception
