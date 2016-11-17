@@ -9,6 +9,11 @@ trait WordPress
 
     /**
      * Get tweets as array
+     * The service name
+     *
+     * @var string
+     */
+    protected $service_name = 'wordpress';
      *
      * @return mixed
      * @throws \Exception

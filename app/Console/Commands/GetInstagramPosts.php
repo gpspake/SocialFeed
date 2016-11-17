@@ -24,13 +24,6 @@ class GetInstagramPosts extends Command
     protected $description = 'Get Instagram Posts';
 
     /**
-     * The service name
-     *
-     * @var string
-     */
-    protected $service_name = 'instagram';
-
-    /**
      * Execute the console command.
      *
      * @return mixed

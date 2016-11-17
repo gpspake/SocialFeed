@@ -23,12 +23,6 @@ class GetTweets extends Command
      */
     protected $description = 'Get my tweets';
 
-    /**
-     * The service name
-     *
-     * @var string
-     */
-    protected $service_name = 'twitter';
 
     /**
      * Execute the console command.

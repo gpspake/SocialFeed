@@ -8,6 +8,13 @@ trait Twitter
 {
     
     use Storage;
+
+    /**
+     * The service name
+     *
+     * @var string
+     */
+    protected $service_name = 'twitter';
     
     /**
      * Get twitter oath settings

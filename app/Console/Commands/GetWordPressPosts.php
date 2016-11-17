@@ -24,13 +24,6 @@ class GetWordPressPosts extends Command
     protected $description = 'Get WordPress Posts';
 
     /**
-     * The service name
-     *
-     * @var string
-     */
-    protected $service_name = 'wordpress';
-
-    /**
      * Execute the console command.
      *
      * @return mixed
